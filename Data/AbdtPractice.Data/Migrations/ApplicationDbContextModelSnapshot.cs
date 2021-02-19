@@ -72,14 +72,11 @@ namespace AbdtPractice.Data.Migrations
                     b.Property<int>("Count")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("DiscountPercent")
-                        .HasColumnType("INTEGER");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("OrderId")
+                    b.Property<int>("OrderId")
                         .HasColumnType("INTEGER");
 
                     b.Property<double>("Price")
@@ -104,7 +101,7 @@ namespace AbdtPractice.Data.Migrations
                     b.Property<int?>("CategoryId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime>("DateCreated")
+                    b.Property<DateTime>("Created")
                         .HasColumnType("TEXT");
 
                     b.Property<int>("DiscountPercent")
@@ -435,7 +432,9 @@ namespace AbdtPractice.Data.Migrations
                 {
                     b.HasOne("AbdtPractice.Core.Entities.Order", "Order")
                         .WithMany("OrderItems")
-                        .HasForeignKey("OrderId");
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Order");
                 });

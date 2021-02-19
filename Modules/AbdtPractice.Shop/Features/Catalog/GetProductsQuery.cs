@@ -3,12 +3,10 @@ using Force.Cqrs;
 
 namespace AbdtPractice.Shop.Features.Catalog
 {
-    public class GetProducts: FilterQuery<ProductListItem>
+    public class GetProductsQuery: FilterQuery<ProductListItem>
     {
-        public string[] Name { get; set; }
-        public double[] Price { get; set; }
         public int CategoryId { get; set; }
-        public GetProducts()
+        public GetProductsQuery()
         {
             Order = "Id";
             CategoryId = 1;
@@ -23,7 +21,7 @@ namespace AbdtPractice.Shop.Features.Catalog
         {
             if (Order == "dateCreated")
             {
-                return Asc ? queryable.OrderByDescending(x => x.DateCreated) : queryable.OrderBy(x => x.DateCreated);
+                return Asc ? queryable.OrderByDescending(x => x.Created) : queryable.OrderBy(x => x.Created);
             }
             return base.Sort(queryable);
         }

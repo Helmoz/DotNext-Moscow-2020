@@ -1,47 +1,42 @@
-using System;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
 using AbdtPractice.Core.Entities;
 using Force.Ddd;
 using Mapster;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AbdtPractice.Shop.Features.Catalog
+namespace AbdtPractice.Shop.Features.Index
 {
-    public class ProductListItem: HasIdBase
+    public class ProductListItemBase<T>: HasIdBase<int>
+        where T: ProductListItemBase<T>
     {
-        static ProductListItem()
+        static ProductListItemBase()
         {
-            TypeAdapterConfig<Product, ProductListItem>
+            TypeAdapterConfig<Product, T>
                 .NewConfig()
+                .Map(dest => dest.Price, Product.DiscountedPriceExpression)
                 .Map(dest => dest.CreatedString, src => src.Created.ToString("d"));
         }
 
         [Display(Name = "Id")]
         public override int Id { get; set; }
 
-        [Display(Name = "Name")] 
+        [Display(Name = "Name")]
         public string Name { get; set; } = default!;
-
-        [Display(Name = "Category")] 
+        
+        [Display(Name = "Category")]
         public string CategoryName { get; set; } = default!;
 
         [Display(Name = "Price")]
-        public double Price { get; set; }
-        
+        public double Price { get; set; } = default!;
+
         [Display(Name = "Discount Percent")]
         public int DiscountPercent { get; set; }
 
         [Display(Name = "Date Created")]
-        public string CreatedString { get; set; } = default!;
-        
+        public string CreatedString => Created.ToString("d");
+
         [HiddenInput]
         public DateTime Created { get; set; }
-
-        [HiddenInput]
-        public int CategoryId { get; set; }
-
-        public override string ToString() => DiscountPercent > 0
-            ? $"{Name} ${Price} Sale: ${DiscountPercent}%!"
-            : $"{Name} ${Price}";
     }
 }

@@ -237,7 +237,7 @@ namespace AbdtPractice.Data.Migrations
                     Name = table.Column<string>(type: "TEXT", nullable: false),
                     Price = table.Column<double>(type: "REAL", nullable: false),
                     DiscountPercent = table.Column<int>(type: "INTEGER", nullable: false),
-                    DateCreated = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    Created = table.Column<DateTime>(type: "TEXT", nullable: false),
                     CategoryId = table.Column<int>(type: "INTEGER", nullable: true),
                     PurchaseCount = table.Column<int>(type: "INTEGER", nullable: false)
                 },
@@ -259,7 +259,7 @@ namespace AbdtPractice.Data.Migrations
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Name = table.Column<string>(type: "TEXT", nullable: false),
-                    OrderId = table.Column<int>(type: "INTEGER", nullable: true),
+                    OrderId = table.Column<int>(type: "INTEGER", nullable: false),
                     Price = table.Column<double>(type: "REAL", nullable: false),
                     Count = table.Column<int>(type: "INTEGER", nullable: false),
                     ProductId = table.Column<int>(type: "INTEGER", nullable: false)
@@ -272,7 +272,7 @@ namespace AbdtPractice.Data.Migrations
                         column: x => x.OrderId,
                         principalTable: "Orders",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(

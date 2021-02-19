@@ -3,6 +3,7 @@ using AbdtPractice.Core.Services;
 using AbdtPractice.Shop.Features.Cart;
 using AbdtPractice.Shop.Features.Catalog;
 using AbdtPractice.Shop.Features.Index;
+using AbdtPractice.Shop.Features.MyOrders;
 using Infrastructure.SwaggerSchema.Dropdowns.Providers;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -18,6 +19,7 @@ namespace AbdtPractice.Shop
             services.AddScoped<IDropdownProvider<NewArrivalsListItem>, NewArrivalsDropdownProvider>();
             services.AddScoped<IDropdownProvider<SaleListItem>, SaleListDropdownProvider>();
             services.AddScoped<IDropdownProvider<CartItem>, CartDropdownProvider>();
+            services.AddScoped<IDropdownProvider<MyOrdersListItem>, MyOrdersListItemDropdownProvider>();
         }
     }
 }

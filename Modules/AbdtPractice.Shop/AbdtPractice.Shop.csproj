@@ -3,7 +3,7 @@
 	<PropertyGroup>
 		<OutputType>Library</OutputType>
 		<TargetFramework>net5.0</TargetFramework>
-		<Nullable>disable</Nullable>
+		<Nullable>enable</Nullable>
 		<LangVersion>9</LangVersion>
 	</PropertyGroup>
 
@@ -91,6 +91,18 @@
 	  </Compile>
 	  <Compile Update="Features\MyOrders\PayMyOrderCommandHandler.cs">
 	    <DependentUpon>PayMyOrder.cs</DependentUpon>
+	  </Compile>
+	  <Compile Update="Features\Index\GetBestsellersFilter.cs">
+	    <DependentUpon>GetBestsellersQuery.cs</DependentUpon>
+	  </Compile>
+	  <Compile Update="Features\Index\GetSaleFilter.cs">
+	    <DependentUpon>GetSaleQuery.cs</DependentUpon>
+	  </Compile>
+	  <Compile Update="Features\MyOrders\GetMyOrdersFilter.cs">
+	    <DependentUpon>GetMyOrdersQuery.cs</DependentUpon>
+	  </Compile>
+	  <Compile Update="Features\MyOrders\MyOrdersListItemDropdownProvider.cs">
+	    <DependentUpon>GetMyOrdersQuery.cs</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 

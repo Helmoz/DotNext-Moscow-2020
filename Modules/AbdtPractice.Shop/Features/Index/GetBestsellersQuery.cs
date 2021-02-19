@@ -1,8 +1,4 @@
-﻿using Force.Cqrs;
-
-namespace AbdtPractice.Shop.Features.Index
+﻿namespace AbdtPractice.Shop.Features.Index
 {
-    public class GetBestsellersQuery: FilterQuery<BestsellersListItem>
-    {
-    }
+    public class GetBestsellersQuery : ProductListItemQueryBase<BestsellersListItem> { }
 }

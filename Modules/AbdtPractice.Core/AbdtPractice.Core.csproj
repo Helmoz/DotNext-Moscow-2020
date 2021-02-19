@@ -3,7 +3,7 @@
 	<PropertyGroup>
 		<RootNamespace>AbdtPractice.Core</RootNamespace>
 		<TargetFramework>net5.0</TargetFramework>
-		<Nullable>disable</Nullable>
+		<Nullable>enable</Nullable>
 		<AssemblyName>AbdtPractice.Core</AssemblyName>
 		<LangVersion>9</LangVersion>
 	</PropertyGroup>

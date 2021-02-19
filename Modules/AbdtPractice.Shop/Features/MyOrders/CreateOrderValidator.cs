@@ -11,7 +11,7 @@ namespace AbdtPractice.Shop.Features.MyOrders
     public class CreateOrderValidator : IValidator<CreateOrder>
     {
         private readonly ICartStorage _cartStorage;
-        private static readonly ValidationResult CartIsEmpty = new ValidationResult("Cart is empty");
+        private static readonly ValidationResult CartIsEmpty = new("Cart is empty");
 
         public CreateOrderValidator(ICartStorage cartStorage)
         {
@@ -20,9 +20,9 @@ namespace AbdtPractice.Shop.Features.MyOrders
 
         public IEnumerable<ValidationResult> Validate(CreateOrder obj)
         {
-            yield return _cartStorage.Cart.CartItems.Any()
+            yield return (_cartStorage.Cart.CartItems.Any()
                 ? ValidationResult.Success
-                : CartIsEmpty;
+                : CartIsEmpty)!;
         }
     }
 }
