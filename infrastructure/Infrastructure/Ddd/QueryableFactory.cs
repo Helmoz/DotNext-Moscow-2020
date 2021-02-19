@@ -1,0 +1,33 @@
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
+using Microsoft.EntityFrameworkCore;
+
+namespace Infrastructure.Ddd
+{
+    // internal, тк она нарушает soLid, хотя ошибок не может быть, но сделали для защиты, от других разработчиков
+    internal class QueryableFactory<T>: IQueryable<T>
+        where T : class
+    {
+        private readonly DbContext _dbContext;
+
+        public QueryableFactory(DbContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
+
+        public IQueryable<T> Queryable => _dbContext.Set<T>(); // здесь
+
+        public IEnumerator<T> GetEnumerator() => Queryable.GetEnumerator();
+
+        IEnumerator IEnumerable.GetEnumerator()  => Queryable.GetEnumerator();
+
+        public Type ElementType => Queryable.ElementType;
+        
+        public Expression Expression => Queryable.Expression;
+        
+        public IQueryProvider Provider => Queryable.Provider;
+    }
+}

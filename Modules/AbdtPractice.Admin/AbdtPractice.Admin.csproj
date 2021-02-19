@@ -1,0 +1,45 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<OutputType>Library</OutputType>
+		<Nullable>disable</Nullable>
+		<RootNamespace>AbdtPractice.Admin</RootNamespace>
+		<TargetFramework>net5.0</TargetFramework>
+		<AssemblyName>AbdtPractice.Admin</AssemblyName>
+		<LangVersion>9</LangVersion>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="EFCore.BulkExtensions" Version="3.3.1" />
+	  <PackageReference Include="Force" Version="2.0.0-alpha3" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\AbdtPractice.Shop\AbdtPractice.Shop.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="Features\OrderManagement\OrderListItem.cs">
+	    <DependentUpon>GetAllOrders.cs</DependentUpon>
+	  </Compile>
+	  <Compile Update="Features\OrderManagement\GetAllOrdersHandler.cs">
+	    <DependentUpon>GetAllOrders.cs</DependentUpon>
+	  </Compile>
+	  <Compile Update="Features\OrderManagement\OrderListItemDropdownProvider.cs">
+	    <DependentUpon>GetAllOrders.cs</DependentUpon>
+	  </Compile>
+	  <Compile Update="Features\OrderManagement\PayOrderCommandHandler.cs">
+	    <DependentUpon>PayOrder.cs</DependentUpon>
+	  </Compile>
+	  <Compile Update="Features\OrderManagement\PayOrderDropdownProvider.cs">
+	    <DependentUpon>PayOrder.cs</DependentUpon>
+	  </Compile>
+	  <Compile Update="Features\OrderManagement\ShipOrderCommandHandler.cs">
+	    <DependentUpon>ShipOrder.cs</DependentUpon>
+	  </Compile>
+	  <Compile Update="Features\OrderManagement\CompleteOrderAdminCommandHandler.cs">
+	    <DependentUpon>CompleteOrderAdmin.cs</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+</Project>

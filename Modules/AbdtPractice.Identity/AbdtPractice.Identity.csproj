@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<OutputType>Library</OutputType>
+		<RootNamespace>AbdtPractice.Identity</RootNamespace>
+		<TargetFramework>net5.0</TargetFramework>
+		<AssemblyName>AbdtPractice.Identity</AssemblyName>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="Force" Version="2.0.0-alpha3" />
+	  <PackageReference Include="IdentityServer4.EntityFramework.Storage" Version="4.1.1" />
+	  <PackageReference Include="JetBrains.Annotations" Version="2020.3.0" />
+	  <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.3" />
+	  <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.3" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\..\infrastructure\Infrastructure\Infrastructure.csproj" />
+	</ItemGroup>
+
+</Project>
