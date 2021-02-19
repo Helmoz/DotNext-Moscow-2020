@@ -37,8 +37,11 @@
 	  <Compile Update="Features\OrderManagement\ShipOrderCommandHandler.cs">
 	    <DependentUpon>ShipOrder.cs</DependentUpon>
 	  </Compile>
-	  <Compile Update="Features\OrderManagement\CompleteOrderAdminCommandHandler.cs">
-	    <DependentUpon>CompleteOrderAdmin.cs</DependentUpon>
+	  <Compile Update="Features\OrderManagement\PayOrderContext.cs">
+	    <DependentUpon>PayOrder.cs</DependentUpon>
+	  </Compile>
+	  <Compile Update="Features\OrderManagement\ShipOrderContext.cs">
+	    <DependentUpon>ShipOrder.cs</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 

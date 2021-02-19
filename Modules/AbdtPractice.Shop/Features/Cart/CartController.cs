@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Net;
 using AbdtPractice.Core.Entities;
@@ -16,11 +17,15 @@ namespace AbdtPractice.Shop.Features.Cart
 
         [HttpPut("Add")]
         [ProducesResponseType((int)HttpStatusCode.Created)]
-        public IActionResult Add([FromBody] int productId) =>
-            this.Process(new AddCartItem(productId));
+        public IActionResult Add(
+            [FromBody] int productId,
+            [FromServices] Func<AddCartItem, AddCartItemContext> factory) =>
+            this.Process(factory(new AddCartItem(productId)));
 
         [HttpPut("Remove")]
-        public ActionResult<bool> Remove([FromBody] int productId) =>
-            this.Process(new RemoveCartItem(productId));
+        public ActionResult<bool> Remove(
+            [FromBody] int productId,
+            [FromServices] Func<RemoveCartItem, RemoveCartItemContext> factory) =>
+            this.Process(factory(new RemoveCartItem(productId)));
     }
 }

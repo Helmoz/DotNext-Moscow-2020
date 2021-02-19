@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using Infrastructure.AspNetCore;
 using Microsoft.AspNetCore.Http;
@@ -14,15 +15,15 @@ namespace AbdtPractice.Admin.Features.OrderManagement
 
         [HttpPut("PayOrder")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public async Task<IActionResult> PayOrder([FromBody] PayOrder command) =>
-            await this.ProcessAsync(command);
+        public async Task<IActionResult> PayOrder(
+            [FromBody] PayOrder command, 
+            [FromServices] Func<PayOrder, PayOrderContext> factory) =>
+            await this.ProcessAsync(factory(command));
 
         [HttpPut("Shipped")]
-        public async Task<IActionResult> Shipped([FromBody] ShipOrder command) =>
-            await this.ProcessAsync(command);
-
-        [HttpPut("Complete")]
-        public async Task<IActionResult> Complete([FromBody] CompleteOrderAdmin command) =>
-            await this.ProcessAsync(command);
+        public async Task<IActionResult> Shipped(
+            [FromBody] ShipOrder command,
+            [FromServices] Func<ShipOrder, ShipOrderContext> factory) =>
+            await this.ProcessAsync(factory(command));
     }
 }
