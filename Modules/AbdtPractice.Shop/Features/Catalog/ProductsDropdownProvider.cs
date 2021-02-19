@@ -12,7 +12,7 @@ namespace AbdtPractice.Shop.Features.Catalog
     public class ProductsDropdownProvider : IDropdownProvider<ProductListItem>
     {
         private readonly IServiceProvider _serviceProvider;
-        private static IHttpContextAccessor _httpContextAccessor;
+        private static IHttpContextAccessor? _httpContextAccessor;
         private readonly int _currentCategoryId;
 
         public ProductsDropdownProvider(IServiceProvider serviceProvider, 
@@ -39,8 +39,8 @@ namespace AbdtPractice.Shop.Features.Catalog
 
         private int GetCurrentCategory()
         {
-            _httpContextAccessor.HttpContext.Request.Query.TryGetValue("categoryId", out var categoryStr);
-            return int.TryParse(categoryStr, out int category)? category : 1;
+            _httpContextAccessor!.HttpContext!.Request.Query.TryGetValue("categoryId", out var categoryStr);
+            return int.TryParse(categoryStr, out var category)? category : 1;
         }
     }
 }

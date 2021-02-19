@@ -5,6 +5,7 @@
 		<RootNamespace>AbdtPractice.Identity</RootNamespace>
 		<TargetFramework>net5.0</TargetFramework>
 		<AssemblyName>AbdtPractice.Identity</AssemblyName>
+		<Nullable>enable</Nullable>
 	</PropertyGroup>
 
 	<ItemGroup>

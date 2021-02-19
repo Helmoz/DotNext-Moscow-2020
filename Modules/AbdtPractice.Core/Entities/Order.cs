@@ -14,9 +14,7 @@ namespace AbdtPractice.Core.Entities
 
         private readonly List<OrderItem> _orderItems = new();
 
-        protected Order()
-        {
-        }
+        protected Order() { }
 
         public Order(Cart cart)
         {
@@ -32,7 +30,8 @@ namespace AbdtPractice.Core.Entities
             this.EnsureInvariant();
         }
 
-        [Required] public virtual User User { get; protected set; }
+        [Required] 
+        public virtual User User { get; protected set; } = default!;
 
         public DateTime Created { get; protected set; } = DateTime.UtcNow;
 

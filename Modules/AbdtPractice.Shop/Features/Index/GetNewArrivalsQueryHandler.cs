@@ -7,8 +7,7 @@ using Mapster;
 namespace AbdtPractice.Shop.Features.Index
 {
     [UsedImplicitly]
-    public class
-        GetNewArrivalsQueryHandler : GetIntEnumerableQueryHandlerBase<GetNewArrivals, Product, NewArrivalsListItem>
+    public class GetNewArrivalsQueryHandler : GetIntEnumerableQueryHandlerBase<GetNewArrivals, Product, NewArrivalsListItem>
     {
         public GetNewArrivalsQueryHandler(IQueryable<Product> queryable) : base(queryable) { }
 
@@ -16,7 +15,7 @@ namespace AbdtPractice.Shop.Features.Index
         {
             return queryable
                 .ProjectToType<NewArrivalsListItem>()
-                .OrderByDescending(x => x.DateCreated)
+                .OrderByDescending(x => x.Created)
                 .Take(4);
         }
     }

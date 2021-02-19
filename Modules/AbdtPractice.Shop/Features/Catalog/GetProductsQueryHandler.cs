@@ -6,7 +6,7 @@ using JetBrains.Annotations;
 namespace AbdtPractice.Shop.Features.Catalog
 {
     [UsedImplicitly]
-    public class GetProductsQueryHandler : GetIntEnumerableQueryHandlerBase<GetProducts, Product, ProductListItem>
+    public class GetProductsQueryHandler : GetIntEnumerableQueryHandlerBase<GetProductsQuery, Product, ProductListItem>
     {
         public GetProductsQueryHandler(IQueryable<Product> queryable) : base(queryable) { }
     }

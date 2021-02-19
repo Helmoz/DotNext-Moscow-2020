@@ -16,7 +16,7 @@ namespace AbdtPractice.Core.Entities
             if (identity == null) throw new ArgumentNullException(nameof(identity));
             var userName = identity.IsAuthenticated ? identity.Name : "Anonymous";
             EventName = eventName ?? throw new ArgumentNullException(nameof(eventName));
-            UserName = userName ?? throw new ArgumentNullException(nameof(userName));
+            UserName = userName!;
             EntityId = entityId;
         }
 

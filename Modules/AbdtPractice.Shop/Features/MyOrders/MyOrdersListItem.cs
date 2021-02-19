@@ -1,5 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using Force.Ddd;
+using Microsoft.AspNetCore.Mvc;
 
 namespace AbdtPractice.Shop.Features.MyOrders
 {
@@ -11,16 +13,16 @@ namespace AbdtPractice.Shop.Features.MyOrders
         [Display(Name = "Total")]
         public double Total { get; set; }
 
-        [Display(Name = "Status")]
-        public string Status { get; set; }
+        [Display(Name = "Status")] 
+        public string Status { get; set; } = default!;
+
+        [HiddenInput]
+        public DateTime Created { get; set; } = default!;
 
         [Display(Name = "Created")]
-        public string Created { get; set; }
+        public string CreatedString => Created.ToString("d");
 
-        [Display(Name = "UserName")]
-        public string UserName { get; set; }
-
-        [Display(Name = "Comment")]
-        public string DisputeComment { get; set; }
+        [Display(Name = "Comment")] 
+        public string DisputeComment { get; set; } = default!;
     }
 }

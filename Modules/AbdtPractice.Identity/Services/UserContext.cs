@@ -7,7 +7,7 @@ namespace AbdtPractice.Identity.Services
 {
     public class UserContext : IUserContext
     {
-        private User _user;
+        private User? _user;
         
         private IHttpContextAccessor HttpContextAccessor { get; }
         

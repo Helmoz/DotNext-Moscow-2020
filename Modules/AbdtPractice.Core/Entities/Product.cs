@@ -18,12 +18,13 @@ namespace AbdtPractice.Core.Entities
         {
         }
 
-        public Product(Category category, string name, double price, int discountPercent)
+        public Product(Category category, string name, double price, int discountPercent, DateTime? created = null)
         {
             Category = category ?? throw new ArgumentNullException(nameof(category));
             Name = name;
             Price = price;
             DiscountPercent = discountPercent;
+            Created = created ?? DateTime.UtcNow;
             this.EnsureInvariant();
         }
 
@@ -33,7 +34,7 @@ namespace AbdtPractice.Core.Entities
 
         public int DiscountPercent { get; protected set; }
 
-        public DateTime DateCreated { get; protected set; } = DateTime.UtcNow;
+        public DateTime Created { get; protected set; } = DateTime.UtcNow;
 
         public virtual Category Category { get; protected set; }
 

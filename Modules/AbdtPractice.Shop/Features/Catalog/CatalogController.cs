@@ -9,7 +9,7 @@ namespace AbdtPractice.Shop.Features.Catalog
     {
         [HttpGet]
         [ProducesResponseType(typeof(IEnumerable<ProductListItem>), StatusCodes.Status200OK)]
-        public IActionResult Get([FromQuery] GetProducts query) =>
+        public IActionResult Get([FromQuery] GetProductsQuery query) =>
             this.Process(query);
 
 
