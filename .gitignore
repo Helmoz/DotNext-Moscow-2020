@@ -91,3 +91,5 @@ project.lock.json
 /Apps/HightechAngular.Web/ClientApp/package-lock.json
 /Apps/HightechAngular.Web/Application.db
 .DS_Store
+wwwroot/
+*.db
