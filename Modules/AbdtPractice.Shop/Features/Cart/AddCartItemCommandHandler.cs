@@ -5,7 +5,7 @@ using Force.Cqrs;
 
 namespace AbdtPractice.Shop.Features.Cart
 {
-    public class AddCartItemCommandHandler : ICommandHandler<AddCartItem>
+    public class AddCartItemCommandHandler : ICommandHandler<AddCartItemContext>
     {
         private readonly ICartStorage _cartStorage;
         private readonly IQueryable<Product> _products;
@@ -17,10 +17,9 @@ namespace AbdtPractice.Shop.Features.Cart
             _products = products;
         }
 
-        public void Handle(AddCartItem input)
+        public void Handle(AddCartItemContext input)
         {
-            var product = _products.First(x => x.Id == input.ProductId);
-            _cartStorage.Cart.AddProduct(product);
+            _cartStorage.Cart.AddProduct(input.Product);
             _cartStorage.SaveChanges();
         }
     }

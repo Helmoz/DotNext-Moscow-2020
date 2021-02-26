@@ -3,7 +3,7 @@ using Force.Cqrs;
 
 namespace AbdtPractice.Shop.Features.Cart
 {
-    public class RemoveCartItemCommandHandler : ICommandHandler<RemoveCartItem, bool>
+    public class RemoveCartItemCommandHandler : ICommandHandler<RemoveCartItemContext, bool>
     {
         private readonly ICartStorage _cartStorage;
 
@@ -11,9 +11,9 @@ namespace AbdtPractice.Shop.Features.Cart
         {
             _cartStorage = cartStorage;
         }
-        public bool Handle(RemoveCartItem input)
+        public bool Handle(RemoveCartItemContext input)
         {
-            var res = _cartStorage.Cart.TryRemoveProduct(input.ProductId);
+            var res = _cartStorage.Cart.TryRemoveProduct(input.Product.Id);
             _cartStorage.SaveChanges();
             return res;
         }

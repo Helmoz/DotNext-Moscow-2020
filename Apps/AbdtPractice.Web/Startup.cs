@@ -71,7 +71,6 @@ namespace AbdtPractice.Web
 
             services.RegisterShop();
             services.RegisterAdmin();
-            services.RegisterOrder();
 
             services.AddSpaStaticFiles(configuration => { configuration.RootPath = "ClientApp/dist"; });
             services.RegisterSwagger();

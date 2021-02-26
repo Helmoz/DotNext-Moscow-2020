@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Infrastructure.AspNetCore;
@@ -18,15 +19,21 @@ namespace AbdtPractice.Shop.Features.MyOrders
             this.Process(query);
 
         [HttpPut("Dispute")]
-        public async Task<IActionResult> Dispute([FromBody] DisputeOrder command) =>
-            await this.ProcessAsync(command);
+        public async Task<IActionResult> Dispute(
+            [FromBody] DisputeOrder command,
+            [FromServices] Func<DisputeOrder, DisputeOrderContext> factory) =>
+            await this.ProcessAsync(factory(command));
 
         [HttpPut("Complete")]
-        public async Task<IActionResult> Complete([FromBody] CompleteOrder command) =>
-            await this.ProcessAsync(command);
+        public async Task<IActionResult> Complete(
+            [FromBody] CompleteOrder command,
+            [FromServices] Func<CompleteOrder, CompleteOrderContext> factory) =>
+            await this.ProcessAsync(factory(command));
 
         [HttpPut("PayOrder")]
-        public async Task<IActionResult> PayOrder([FromBody] PayMyOrder command) =>
-            await this.ProcessAsync(command);
+        public async Task<IActionResult> PayOrder(
+            [FromBody] PayMyOrder command,
+            [FromServices] Func<PayMyOrder, PayMyOrderContext> factory) =>
+            await this.ProcessAsync(factory(command));
     }
 }

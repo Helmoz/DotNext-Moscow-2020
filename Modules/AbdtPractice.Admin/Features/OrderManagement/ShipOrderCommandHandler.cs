@@ -7,7 +7,7 @@ using Infrastructure.Cqrs;
 namespace AbdtPractice.Admin.Features.OrderManagement
 {
     public class ShipOrderCommandHandler :
-        ICommandHandler<ShipOrder, Task<HandlerResult<OrderStatus>>>
+        ICommandHandler<ShipOrderContext, Task<HandlerResult<OrderStatus>>>
     {
         private readonly IQueryable<Order> _orders;
         public ShipOrderCommandHandler(IQueryable<Order> orders)
@@ -15,11 +15,10 @@ namespace AbdtPractice.Admin.Features.OrderManagement
             _orders = orders;
         }
 
-        public async Task<HandlerResult<OrderStatus>> Handle(ShipOrder input)
+        public async Task<HandlerResult<OrderStatus>> Handle(ShipOrderContext input)
         {
-            var order = _orders.First(x => x.Id == input.OrderId);
             await Task.Delay(1000);
-            var result = order.BecomeShipped();
+            var result = input.Order.BecomeShipped();
             return new HandlerResult<OrderStatus>(result);
         }
     }
