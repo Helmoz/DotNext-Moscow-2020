@@ -10,8 +10,9 @@ namespace AbdtPractice.Shop.Features.MyOrders
         public async Task<HandlerResult<OrderStatus>> Handle(CompleteOrderContext input)
         {
             await Task.Delay(1000);
-            var result = input.Entity.BecomeComplete();
-            return new HandlerResult<OrderStatus>(result);
+            var result = new Order.Shipped(input.Entity).ToComplete();
+            
+            return new HandlerResult<OrderStatus>(result.OrderStatus);
         }
     }
 }

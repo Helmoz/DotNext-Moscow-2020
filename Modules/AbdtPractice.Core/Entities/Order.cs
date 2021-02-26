@@ -8,7 +8,7 @@ using Infrastructure.Ddd;
 
 namespace AbdtPractice.Core.Entities
 {
-    public class Order : IntEntityBase
+    public partial class Order : IntEntityBase
     {
         public static readonly OrderSpecs Specs = new();
 
@@ -44,29 +44,5 @@ namespace AbdtPractice.Core.Entities
         public Guid? TrackingCode { get; protected set; }
 
         public OrderStatus Status { get; protected set; }
-
-        public OrderStatus BecomePaid()
-        {
-            Status = OrderStatus.Paid;
-            return Status;
-        }
-
-        public OrderStatus BecomeShipped()
-        {
-            Status = OrderStatus.Shipped;
-            return Status;
-        }
-
-        public OrderStatus BecomeDispute()
-        {
-            Status = OrderStatus.Dispute;
-            return Status;
-        }
-
-        public OrderStatus BecomeComplete()
-        {
-            Status = OrderStatus.Complete;
-            return Status;
-        }
     }
 }
