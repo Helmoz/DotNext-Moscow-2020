@@ -142,6 +142,7 @@
 	  </Compile>
 	  <Compile Update="Features\Cart\RemoveCartItem.cs">
 	    <DependentUpon>CartController.cs</DependentUpon>
+	  </Compile>
 	  <Compile Update="Features\Index\GetBestsellersFilter.cs">
 	    <DependentUpon>GetBestsellersQuery.cs</DependentUpon>
 	  </Compile>

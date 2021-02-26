@@ -7,13 +7,9 @@ using Infrastructure.Cqrs;
 
 namespace AbdtPractice.Core.Base
 {
-    public abstract class ChangeOrderStateBase : IHasId<int>, ICommand<Task<HandlerResult<OrderStatus>>>
+    public abstract class ChangeOrderStateBase : HasIdBase, ICommand<Task<HandlerResult<OrderStatus>>>
     {
         [Required]
         public int OrderId { get; set; }
-
-        object IHasId.Id => Id;
-
-        public int Id => OrderId;
     }
 }
