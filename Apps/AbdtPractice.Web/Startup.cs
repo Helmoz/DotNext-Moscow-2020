@@ -1,6 +1,7 @@
 using System.Text.Json.Serialization;
 using AbdtPractice.Admin;
 using AbdtPractice.Admin.Features.OrderManagement;
+using AbdtPractice.Core;
 using AbdtPractice.Data;
 using AbdtPractice.Identity.Entities;
 using AbdtPractice.Identity.Services;
@@ -66,11 +67,9 @@ namespace AbdtPractice.Web
                     options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
                 })
                 .AddModulesWithDbContext<ApplicationDbContext>(
-                    typeof(CatalogController).Assembly,
-                    typeof(OrderController).Assembly);
-
-            services.RegisterShop();
-            services.RegisterAdmin();
+                    CoreRegistrations.RegisterCore,
+                    AdminRegistrations.RegisterAdmin,
+                    ShopRegistrations.RegisterShop);
 
             services.AddSpaStaticFiles(configuration => { configuration.RootPath = "ClientApp/dist"; });
             services.RegisterSwagger();

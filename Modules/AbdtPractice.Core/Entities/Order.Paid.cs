@@ -1,4 +1,6 @@
-﻿namespace AbdtPractice.Core.Entities
+﻿using System;
+
+namespace AbdtPractice.Core.Entities
 {
     public partial class Order
     {
@@ -8,8 +10,9 @@
 
             public override OrderStatus EligibleStatus => OrderStatus.Paid;
 
-            public Shipped ToShipped()
+            public Shipped ToShipped(Guid trackingCode)
             {
+                Entity.TrackingCode = trackingCode;
                 return Entity.To<Shipped>(OrderStatus.Shipped);
             }
         }

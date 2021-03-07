@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AbdtPractice.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210219161216_Init")]
+    [Migration("20210307064317_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -39,6 +39,12 @@ namespace AbdtPractice.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("AdminComment")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Complaint")
+                        .HasColumnType("TEXT");
 
                     b.Property<DateTime>("Created")
                         .HasColumnType("TEXT");

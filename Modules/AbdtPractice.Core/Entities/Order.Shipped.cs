@@ -8,8 +8,9 @@
 
             public override OrderStatus EligibleStatus => OrderStatus.Shipped;
 
-            public Disputed ToDisputed()
+            public Disputed ToDisputed(string complaint)
             {
+                Entity.Complaint = complaint;
                 return Entity.To<Disputed>(OrderStatus.Dispute);
             }
 

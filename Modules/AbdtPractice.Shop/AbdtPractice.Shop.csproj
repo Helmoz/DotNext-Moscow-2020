@@ -89,8 +89,8 @@
 	  <Compile Update="Features\MyOrders\MyOrdersListItem.cs">
 	    <DependentUpon>GetMyOrdersQuery.cs</DependentUpon>
 	  </Compile>
-	  <Compile Update="Features\MyOrders\PayMyOrderCommandHandler.cs">
-	    <DependentUpon>PayMyOrder.cs</DependentUpon>
+	  <Compile Update="Features\MyOrders\PayOrderCommandHandler.cs">
+	    <DependentUpon>PayOrder.cs</DependentUpon>
 	  </Compile>
 	  <Compile Update="Features\Cart\AddCartItemContext.cs">
 	    <DependentUpon>AddCartItem.cs</DependentUpon>
@@ -98,16 +98,7 @@
 	  <Compile Update="Features\Cart\RemoveCartItemContext.cs">
 	    <DependentUpon>RemoveCartItem.cs</DependentUpon>
 	  </Compile>
-	  <Compile Update="Features\MyOrders\CompleteOrderContext.cs">
-	    <DependentUpon>CompleteOrder.cs</DependentUpon>
-	  </Compile>
-	  <Compile Update="Features\MyOrders\DisputeOrderContext.cs">
-	    <DependentUpon>DisputeOrder.cs</DependentUpon>
-	  </Compile>
-	  <Compile Update="Features\MyOrders\PayMyOrderContext.cs">
-	    <DependentUpon>PayMyOrder.cs</DependentUpon>
-	  </Compile>
-	  <Compile Update="Features\MyOrders\PayMyOrder.cs">
+	  <Compile Update="Features\MyOrders\PayOrder.cs">
 	    <DependentUpon>MyOrdersController.cs</DependentUpon>
 	  </Compile>
 	  <Compile Update="Features\MyOrders\GetMyOrdersQuery.cs">

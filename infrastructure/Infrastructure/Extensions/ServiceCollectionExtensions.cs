@@ -150,6 +150,27 @@ namespace Infrastructure.Extensions
 
             return builder;
         }
+        
+        [PublicAPI]
+        public static IMvcBuilder AddModulesWithDbContext<TDbContext>(
+            this IMvcBuilder builder,
+            params Action<IServiceCollection>[] initializers)
+            where TDbContext : DbContext
+        {
+            builder.Services.AddDbContextAndQueryables<TDbContext>();
+
+            AddModuleWithApplicationParts(builder.Services, builder.PartManager,
+                initializers
+                    .Select(x => x.Method.DeclaringType?.Assembly)
+                    .Where(x => x != null));
+
+            foreach (var initializer in initializers)
+            {
+                initializer(builder.Services);
+            }
+
+            return builder;
+        }
 
         private static void AddModuleWithApplicationParts(IServiceCollection serviceCollection,
             ApplicationPartManager applicationPartManager, IEnumerable<Assembly> assemblies)

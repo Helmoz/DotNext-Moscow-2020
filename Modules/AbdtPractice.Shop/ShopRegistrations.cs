@@ -1,3 +1,4 @@
+using AbdtPractice.Core;
 using AbdtPractice.Core.Entities;
 using AbdtPractice.Core.Services;
 using AbdtPractice.Shop.Features.Cart;
@@ -14,6 +15,12 @@ namespace AbdtPractice.Shop
         public static void RegisterShop(this IServiceCollection services)
         {
             services.AddScoped<ICartStorage, CartStorage>();
+            
+            services
+                .AddOrderStateTransition<PayOrder, Order.New, Order.Paid>()
+                .AddOrderStateTransition<DisputeOrder, Order.Shipped, Order.Disputed>()
+                .AddOrderStateTransition<CompleteOrder, Order.Shipped, Order.Complete>();
+
             services.AddScoped<IDropdownProvider<ProductListItem>, ProductsDropdownProvider>();
             services.AddScoped<IDropdownProvider<BestsellersListItem>, BestsellersDropdownProvider>();
             services.AddScoped<IDropdownProvider<NewArrivalsListItem>, NewArrivalsDropdownProvider>();
