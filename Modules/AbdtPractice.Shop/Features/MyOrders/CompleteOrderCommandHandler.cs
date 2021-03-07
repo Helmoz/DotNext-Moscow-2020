@@ -2,6 +2,7 @@
 using AbdtPractice.Core.Entities;
 using Force.Cqrs;
 using Infrastructure.Cqrs;
+using Infrastructure.Workflow;
 
 namespace AbdtPractice.Shop.Features.MyOrders
 {
@@ -10,9 +11,8 @@ namespace AbdtPractice.Shop.Features.MyOrders
         public async Task<HandlerResult<OrderStatus>> Handle(CompleteOrderContext input)
         {
             await Task.Delay(1000);
-            var result = new Order.Shipped(input.Entity).ToComplete();
-            
-            return new HandlerResult<OrderStatus>(result.OrderStatus);
+            var result = input.Entity.With<Order.Shipped, Order.Complete>(shippedOrder => shippedOrder.ToComplete());
+            return result.EligibleStatus;
         }
     }
 }

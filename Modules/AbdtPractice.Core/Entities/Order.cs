@@ -4,11 +4,11 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using AbdtPractice.Identity.Entities;
 using Force.Extensions;
-using Infrastructure.Ddd;
+using Infrastructure.Ddd.Domain.State;
 
 namespace AbdtPractice.Core.Entities
 {
-    public partial class Order : IntEntityBase
+    public partial class Order : HasStateBase<int, OrderStatus, Order.OrderStateBase>
     {
         public static readonly OrderSpecs Specs = new();
 
@@ -44,5 +44,18 @@ namespace AbdtPractice.Core.Entities
         public Guid? TrackingCode { get; protected set; }
 
         public OrderStatus Status { get; protected set; }
+        
+        public override OrderStateBase GetState(OrderStatus status)
+        {
+            return status switch
+            {
+                OrderStatus.New => new New(this),
+                OrderStatus.Paid => new Paid(this),
+                OrderStatus.Shipped => new Shipped(this),
+                OrderStatus.Dispute => new Disputed(this),
+                OrderStatus.Complete => new Complete(this),
+                _ => throw new ArgumentOutOfRangeException(nameof(status), status, null)
+            };
+        }
     }
 }

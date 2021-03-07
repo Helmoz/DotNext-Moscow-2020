@@ -6,12 +6,11 @@
         {
             public New(Order entity) : base(entity) { }
 
-            public override OrderStatus OrderStatus => OrderStatus.New;
+            public override OrderStatus EligibleStatus => OrderStatus.New;
 
             public Paid ToPaid()
             {
-                Order.Status = OrderStatus.Paid;
-                return (Paid)GetState(OrderStatus.Paid);
+                return Entity.To<Paid>(OrderStatus.Paid);
             }
         }
     }

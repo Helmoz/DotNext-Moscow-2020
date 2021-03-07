@@ -6,14 +6,12 @@
         {
             public Paid(Order entity) : base(entity) { }
 
-            public override OrderStatus OrderStatus => OrderStatus.Paid;
+            public override OrderStatus EligibleStatus => OrderStatus.Paid;
 
             public Shipped ToShipped()
             {
-                Order.Status = OrderStatus.Shipped;
-                return (Shipped)GetState(OrderStatus.Shipped);
+                return Entity.To<Shipped>(OrderStatus.Shipped);
             }
-
         }
     }
 }

@@ -2,6 +2,7 @@
 using AbdtPractice.Core.Entities;
 using Force.Cqrs;
 using Infrastructure.Cqrs;
+using Infrastructure.Workflow;
 
 namespace AbdtPractice.Shop.Features.MyOrders
 {
@@ -10,8 +11,8 @@ namespace AbdtPractice.Shop.Features.MyOrders
         public async Task<HandlerResult<OrderStatus>> Handle(PayMyOrderContext input)
         {
             await Task.Delay(1000);
-            var result = new Order.New(input.Entity).ToPaid();
-            return new HandlerResult<OrderStatus>(result.OrderStatus);
+            var result = input.Entity.With((Order.New newOrder) => newOrder.ToPaid());
+            return result.EligibleStatus;
         }
     }
 }

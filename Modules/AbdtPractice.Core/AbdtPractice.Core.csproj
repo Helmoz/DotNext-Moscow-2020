@@ -18,4 +18,22 @@
 	  <ProjectReference Include="..\AbdtPractice.Identity\AbdtPractice.Identity.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Compile Update="Entities\Order.Complete.cs">
+	    <DependentUpon>OrderStateBase.cs</DependentUpon>
+	  </Compile>
+	  <Compile Update="Entities\Order.Disputed.cs">
+	    <DependentUpon>OrderStateBase.cs</DependentUpon>
+	  </Compile>
+	  <Compile Update="Entities\Order.New.cs">
+	    <DependentUpon>OrderStateBase.cs</DependentUpon>
+	  </Compile>
+	  <Compile Update="Entities\Order.Paid.cs">
+	    <DependentUpon>OrderStateBase.cs</DependentUpon>
+	  </Compile>
+	  <Compile Update="Entities\Order.Shipped.cs">
+	    <DependentUpon>OrderStateBase.cs</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
 </Project>

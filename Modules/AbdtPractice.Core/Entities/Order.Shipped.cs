@@ -6,18 +6,16 @@
         {
             public Shipped(Order entity) : base(entity) { }
 
-            public override OrderStatus OrderStatus => OrderStatus.Shipped;
+            public override OrderStatus EligibleStatus => OrderStatus.Shipped;
 
             public Disputed ToDisputed()
             {
-                Order.Status = OrderStatus.Dispute;
-                return (Disputed)GetState(OrderStatus.Dispute);
+                return Entity.To<Disputed>(OrderStatus.Dispute);
             }
 
             public Complete ToComplete()
             {
-                Order.Status = OrderStatus.Complete;
-                return (Complete)GetState(OrderStatus.Complete);
+                return Entity.To<Complete>(OrderStatus.Complete);
             }
         }
     }

@@ -1,28 +1,15 @@
-﻿namespace AbdtPractice.Core.Entities
+﻿using Infrastructure.Cqrs;
+using Infrastructure.Ddd.Domain.State;
+using Infrastructure.Workflow;
+
+namespace AbdtPractice.Core.Entities
 {
     public partial class Order
     {
-        public abstract class OrderStateBase
+        public abstract class OrderStateBase : SingleStateBase<Order, OrderStatus>
         {
-            protected OrderStateBase(Order order)
+            protected OrderStateBase(Order order) : base(order)
             {
-                Order = order;
-            }
-
-            protected Order Order { get; set; }
-
-            public virtual OrderStatus OrderStatus { get; set; }
-
-            protected OrderStateBase GetState(OrderStatus status)
-            {
-                return status switch
-                {
-                    OrderStatus.New => new New(Order),
-                    OrderStatus.Paid => new Paid(Order),
-                    OrderStatus.Shipped => new Shipped(Order),
-                    OrderStatus.Dispute => new Disputed(Order),
-                    OrderStatus.Complete => new Complete(Order)
-                };
             }
         }
     }

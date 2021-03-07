@@ -6,7 +6,7 @@
         {
             public Complete(Order entity) : base(entity) { }
 
-            public override OrderStatus OrderStatus => OrderStatus.Complete;
+            public override OrderStatus EligibleStatus => OrderStatus.Complete;
         }
     }
 }
