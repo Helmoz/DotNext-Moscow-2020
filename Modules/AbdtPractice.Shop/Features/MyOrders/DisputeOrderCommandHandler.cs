@@ -1,12 +1,6 @@
-﻿using System.Threading.Tasks;
-using AbdtPractice.Core.Base;
+﻿using AbdtPractice.Core.Base;
 using AbdtPractice.Core.Entities;
 using Force.Ccc;
-using Force.Cqrs;
-using Infrastructure.Cqrs;
-using Infrastructure.Workflow;
-using JetBrains.Annotations;
-using Microsoft.Extensions.Logging;
 
 namespace AbdtPractice.Shop.Features.MyOrders
 {

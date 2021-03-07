@@ -45,9 +45,7 @@ namespace AbdtPractice.Core.Entities
         
         public string? Complaint { get; protected set; } 
 
-        public string? AdminComment { get; protected set; } 
-
-        public OrderStatus Status { get; protected set; }
+        public string? AdminComment { get; protected set; }
         
         public override OrderStateBase GetState(OrderStatus status)
         {
