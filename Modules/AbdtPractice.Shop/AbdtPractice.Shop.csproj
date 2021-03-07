@@ -90,7 +90,7 @@
 	    <DependentUpon>GetMyOrdersQuery.cs</DependentUpon>
 	  </Compile>
 	  <Compile Update="Features\MyOrders\PayOrderCommandHandler.cs">
-	    <DependentUpon>PayMyOrder.cs</DependentUpon>
+	    <DependentUpon>PayOrder.cs</DependentUpon>
 	  </Compile>
 	  <Compile Update="Features\Cart\AddCartItemContext.cs">
 	    <DependentUpon>AddCartItem.cs</DependentUpon>
