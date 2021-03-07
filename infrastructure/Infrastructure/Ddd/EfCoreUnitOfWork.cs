@@ -11,7 +11,7 @@ namespace Infrastructure.Ddd
 {
     public class EfCoreUnitOfWork : UnitOfWorkBase
     {
-        private readonly DbContext _dbContext;
+        public readonly DbContext _dbContext;
 
         public EfCoreUnitOfWork(
             IHandler<IEnumerable<IDomainEvent>> domainEventDispatcher,

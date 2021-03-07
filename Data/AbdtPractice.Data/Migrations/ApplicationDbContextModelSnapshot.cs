@@ -38,6 +38,12 @@ namespace AbdtPractice.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("AdminComment")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Complaint")
+                        .HasColumnType("TEXT");
+
                     b.Property<DateTime>("Created")
                         .HasColumnType("TEXT");
 

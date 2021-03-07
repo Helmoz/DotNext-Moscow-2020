@@ -215,6 +215,8 @@ namespace AbdtPractice.Data.Migrations
                     Updated = table.Column<DateTime>(type: "TEXT", nullable: false),
                     Total = table.Column<double>(type: "REAL", nullable: false),
                     TrackingCode = table.Column<Guid>(type: "TEXT", nullable: true),
+                    Complaint = table.Column<string>(type: "TEXT", nullable: true),
+                    AdminComment = table.Column<string>(type: "TEXT", nullable: true),
                     Status = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>

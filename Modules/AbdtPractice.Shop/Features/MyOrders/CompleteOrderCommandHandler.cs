@@ -1,18 +1,16 @@
-﻿using System.Threading.Tasks;
+﻿using AbdtPractice.Core.Base;
 using AbdtPractice.Core.Entities;
-using Force.Cqrs;
-using Infrastructure.Cqrs;
-using Infrastructure.Workflow;
+using Force.Ccc;
 
 namespace AbdtPractice.Shop.Features.MyOrders
 {
-    public class CompleteOrderCommandHandler : ICommandHandler<CompleteOrderContext, Task<HandlerResult<OrderStatus>>>
+    public class CompleteOrderCommandHandler : ChangeOrderStateHandlerBase<CompleteOrder, Order.Shipped, Order.Complete>
     {
-        public async Task<HandlerResult<OrderStatus>> Handle(CompleteOrderContext input)
+        public CompleteOrderCommandHandler(IUnitOfWork unitOfWork) : base(unitOfWork) { }
+
+        protected override Order.Complete ChangeState(ChangeOrderStateContext<CompleteOrder, Order.Shipped> input)
         {
-            await Task.Delay(1000);
-            var result = input.Entity.With<Order.Shipped, Order.Complete>(shippedOrder => shippedOrder.ToComplete());
-            return result.EligibleStatus;
+            return input.State.ToComplete();
         }
     }
 }

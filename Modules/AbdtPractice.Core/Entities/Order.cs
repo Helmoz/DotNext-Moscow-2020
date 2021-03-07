@@ -42,6 +42,10 @@ namespace AbdtPractice.Core.Entities
         public double Total { get; protected set; }
 
         public Guid? TrackingCode { get; protected set; }
+        
+        public string? Complaint { get; protected set; } 
+
+        public string? AdminComment { get; protected set; } 
 
         public OrderStatus Status { get; protected set; }
         

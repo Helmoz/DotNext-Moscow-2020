@@ -1,18 +1,17 @@
-﻿using System.Threading.Tasks;
+﻿using System;
 using AbdtPractice.Core.Base;
 using AbdtPractice.Core.Entities;
-using Force.Cqrs;
-using Infrastructure.Cqrs;
+using Force.Ccc;
 
 namespace AbdtPractice.Admin.Features.OrderManagement
 {
-    public class ShipOrderCommandHandler : ICommandHandler<ShipOrderContext, Task<HandlerResult<OrderStatus>>>
+    public class ShipOrderCommandHandler : ChangeOrderStateHandlerBase<ShipOrder, Order.Paid, Order.Shipped>
     {
-        public async Task<HandlerResult<OrderStatus>> Handle(ShipOrderContext input)
+        public ShipOrderCommandHandler(IUnitOfWork unitOfWork) : base(unitOfWork) { }
+
+        protected override Order.Shipped ChangeState(ChangeOrderStateContext<ShipOrder, Order.Paid> input)
         {
-            await Task.Delay(1000);
-            var result = input.Order.With<Order.Paid, Order.Shipped>(paidOrder => paidOrder.ToShipped());
-            return result.EligibleStatus;
+            return input.State.ToShipped(Guid.NewGuid());
         }
     }
 }

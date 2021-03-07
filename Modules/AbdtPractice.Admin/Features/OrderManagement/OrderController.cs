@@ -1,5 +1,8 @@
 using System;
 using System.Threading.Tasks;
+using AbdtPractice.Core.Base;
+using AbdtPractice.Core.Entities;
+using AbdtPractice.Shop.Features.MyOrders;
 using Infrastructure.AspNetCore;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -17,13 +20,13 @@ namespace AbdtPractice.Admin.Features.OrderManagement
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> PayOrder(
             [FromBody] PayOrder command, 
-            [FromServices] Func<PayOrder, PayOrderContext> factory) =>
+            [FromServices] Func<PayOrder, ChangeOrderStateContext<PayOrder, Order.New>> factory) =>
             await this.ProcessAsync(factory(command));
 
         [HttpPut("Shipped")]
         public async Task<IActionResult> Shipped(
             [FromBody] ShipOrder command,
-            [FromServices] Func<ShipOrder, ShipOrderContext> factory) =>
+            [FromServices] Func<ShipOrder, ChangeOrderStateContext<ShipOrder, Order.Paid>> factory) =>
             await this.ProcessAsync(factory(command));
     }
 }

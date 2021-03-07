@@ -1,19 +1,22 @@
 ﻿using System.Threading.Tasks;
 using AbdtPractice.Core.Base;
 using AbdtPractice.Core.Entities;
+using Force.Ccc;
 using Force.Cqrs;
 using Infrastructure.Cqrs;
 using Infrastructure.Workflow;
+using JetBrains.Annotations;
+using Microsoft.Extensions.Logging;
 
 namespace AbdtPractice.Shop.Features.MyOrders
 {
-    public class DisputeOrderCommandHandler : ICommandHandler<DisputeOrderContext, Task<HandlerResult<OrderStatus>>>
+    public class DisputeOrderCommandHandler : ChangeOrderStateHandlerBase<DisputeOrder, Order.Shipped, Order.Disputed>
     {
-        public async Task<HandlerResult<OrderStatus>> Handle(DisputeOrderContext input)
+        public DisputeOrderCommandHandler(IUnitOfWork unitOfWork) : base(unitOfWork) { }
+
+        protected override Order.Disputed ChangeState(ChangeOrderStateContext<DisputeOrder, Order.Shipped> input)
         {
-            await Task.Delay(1000);
-            var result = input.Entity.With<Order.Shipped, Order.Disputed>(shippedOrder => shippedOrder.ToDisputed());
-            return result.EligibleStatus;
+            return input.State.ToDisputed(input.Request.Complaint);
         }
     }
 }
